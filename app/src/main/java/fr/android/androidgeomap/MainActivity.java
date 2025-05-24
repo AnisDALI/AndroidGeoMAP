@@ -9,6 +9,9 @@ import java.util.Date;
 import java.io.InputStream;
 import java.io.IOException;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -330,6 +333,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             db.insert(LocalDatabaseHelper.TABLE_PHOTOS, null, values);
                             db.close();
 
+
+                            sendDataToMySQL(
+                                    Double.parseDouble(textLatitude.getText().toString().replace("Latitude: ", "")),
+                                    Double.parseDouble(textLongitude.getText().toString().replace("Longitude: ", "")),
+                                    textAddress.getText().toString(),
+                                    photoUri.toString(),
+                                    new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date())
+                            );
+
+
                         } else {
                             Toast.makeText(this, "Fichier photo vide ou inexistant", Toast.LENGTH_SHORT).show();
                         }
@@ -357,6 +370,34 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Toast.makeText(this, "Échec de la prise de photo: code " + resultCode, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void sendDataToMySQL(double lat, double lon, String address, String uri, String date) {
+        new Thread(() -> {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:mysql://10.0.2.2:3306/geoapp", "aaa", "aaa");
+
+                String sql = "INSERT INTO photos (latitude, longitude, address, uri, date) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setDouble(1, lat);
+                stmt.setDouble(2, lon);
+                stmt.setString(3, address);
+                stmt.setString(4, uri);
+                stmt.setString(5, date);
+
+                stmt.executeUpdate();
+
+                Log.d("MySQL", "Données insérées avec succès");
+
+                stmt.close();
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("MySQL", "Erreur lors de l'envoi MySQL : " + e.getMessage());
+            }
+        }).start();
     }
 
     private void galleryAddPic() {
