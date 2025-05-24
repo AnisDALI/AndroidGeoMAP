@@ -68,6 +68,13 @@
             android:layout_height="wrap_content"
             android:text="Historique des photos"
             android:layout_marginTop="8dp" />
+        <Button
+            android:id="@+id/buttonViewRemote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voir depuis MySQL"
+            android:layout_marginTop="8dp" />
+
 
         <!-- Photo prise -->
         <ImageView

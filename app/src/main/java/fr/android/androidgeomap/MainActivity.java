@@ -85,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             Intent intent = new Intent(MainActivity.this, PhotoHistoryActivity.class);
             startActivity(intent);
         });
+        findViewById(R.id.buttonViewRemote).setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, PhotoRemoteActivity.class));
+        });
+
 
 
         // Initialiser le LocationManager
