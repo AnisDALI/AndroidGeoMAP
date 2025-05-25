@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,49 +11,51 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Titre -->
+        <!-- Titre principal -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BIENVENUE !"
-            android:textSize="22sp"
+            android:text="Bienvenue !"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"
-            android:textColor="@android:color/black" />
+            android:textColor="#000000"
+            android:layout_marginBottom="24dp" />
 
-        <!-- Coordonnées -->
+        <!-- Coordonnées GPS -->
         <TextView
             android:id="@+id/textLatitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latitude: Inconnue"
+            android:text="Latitude : Inconnue"
             android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp" />
 
         <TextView
             android:id="@+id/textLongitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Longitude: Inconnue"
+            android:text="Longitude : Inconnue"
             android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp" />
 
         <TextView
             android:id="@+id/textAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adresse: inconnue"
+            android:text="Adresse : inconnue"
             android:textSize="18sp"
-            android:textColor="@android:color/black"
+            android:textColor="#333333"
             android:layout_marginBottom="24dp" />
 
-        <!-- Boutons -->
+        <!-- Boutons d'action -->
         <Button
             android:id="@+id/buttonMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Afficher la carte"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="4dp" />
 
         <Button
             android:id="@+id/buttonPhoto"
@@ -68,21 +70,23 @@
             android:layout_height="wrap_content"
             android:text="Historique des photos"
             android:layout_marginTop="8dp" />
+
         <Button
             android:id="@+id/buttonViewRemote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Voir depuis MySQL"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp" />
 
-
-        <!-- Photo prise -->
+        <!-- Affichage de la dernière photo prise -->
         <ImageView
             android:id="@+id/imagePhoto"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:background="@android:color/darker_gray"
             android:contentDescription="Image prise" />
 
