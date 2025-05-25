@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalDatabaseHelper extends SQLiteOpenHelper {
 
+    // === Configuration de la base ===
     public static final String DB_NAME = "photos.db";
     public static final int DB_VERSION = 1;
 
+    // === Structure de la table ===
     public static final String TABLE_PHOTOS = "photos";
     public static final String COL_ID = "_id";
     public static final String COL_LAT = "latitude";
@@ -17,23 +19,25 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_URI = "uri";
     public static final String COL_DATE = "date";
 
+    // === Constructeur ===
     public LocalDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    // === Création de la base ===
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE =
-                "CREATE TABLE " + TABLE_PHOTOS + " (" +
-                        COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COL_LAT + " REAL, " +
-                        COL_LON + " REAL, " +
-                        COL_ADDRESS + " TEXT, " +
-                        COL_URI + " TEXT, " +
-                        COL_DATE + " TEXT)";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_PHOTOS + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_LAT + " REAL, " +
+                COL_LON + " REAL, " +
+                COL_ADDRESS + " TEXT, " +
+                COL_URI + " TEXT, " +
+                COL_DATE + " TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
+    // === Mise à jour de la base ===
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PHOTOS);

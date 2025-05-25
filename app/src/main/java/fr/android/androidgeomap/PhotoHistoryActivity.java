@@ -1,6 +1,5 @@
 package fr.android.androidgeomap;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,18 +31,20 @@ public class PhotoHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_history);
 
+        // Bouton retour vers MainActivity
         Button buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(v -> finish());
 
-
+        // Initialisation du RecyclerView
         recyclerView = findViewById(R.id.recyclerViewPhotos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Chargement des photos enregistrées en base locale SQLite
         adapter = new PhotoAdapter(this, loadPhotosFromDB());
         recyclerView.setAdapter(adapter);
     }
 
-
+    // Récupère les données enregistrées dans SQLite
     private List<PhotoItem> loadPhotosFromDB() {
         List<PhotoItem> photos = new ArrayList<>();
         LocalDatabaseHelper dbHelper = new LocalDatabaseHelper(this);
@@ -56,8 +57,6 @@ public class PhotoHistoryActivity extends AppCompatActivity {
         );
 
         try {
-
-
             while (cursor.moveToNext()) {
                 PhotoItem item = new PhotoItem();
 
@@ -73,7 +72,6 @@ public class PhotoHistoryActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            android.util.Log.e("PhotoHistory", "Erreur lors de la lecture de la base de données: " + e.getMessage());
         } finally {
             cursor.close();
             db.close();
@@ -82,13 +80,14 @@ public class PhotoHistoryActivity extends AppCompatActivity {
         return photos;
     }
 
-
+    // Objet représentant chaque ligne (photo) affichée
     public static class PhotoItem {
         Uri uri;
         String address;
         String date;
     }
 
+    // Adaptateur pour afficher les photos dans le RecyclerView
     public static class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
 
         private final Context context;
@@ -119,6 +118,7 @@ public class PhotoHistoryActivity extends AppCompatActivity {
             return items.size();
         }
 
+        // Déclaration des vues contenues dans chaque "item_photo"
         public static class PhotoViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
             TextView textAddress;
