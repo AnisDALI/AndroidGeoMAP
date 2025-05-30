@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,82 +11,78 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Titre principal -->
+        <!-- Titre -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bienvenue !"
-            android:textSize="24sp"
+            android:text="@string/welcome"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="24dp"
+            android:textColor="@android:color/black" />
 
-        <!-- Coordonnées GPS -->
+        <!-- Coordonnées -->
         <TextView
             android:id="@+id/textLatitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latitude : Inconnue"
+            android:text="@string/latitude"
             android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_marginBottom="4dp" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textLongitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Longitude : Inconnue"
+            android:text="@string/longitude"
             android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_marginBottom="4dp" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adresse : inconnue"
+            android:text="@string/address"
             android:textSize="18sp"
-            android:textColor="#333333"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="24dp" />
 
-        <!-- Boutons d'action -->
+        <!-- Boutons -->
         <Button
             android:id="@+id/buttonMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Afficher la carte"
-            android:layout_marginTop="4dp" />
+            android:text="@string/show_map"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/buttonPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prendre une photo"
+            android:text="@string/take_photo"
             android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/buttonHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historique des photos"
+            android:text="@string/history"
             android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/buttonViewRemote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Voir depuis MySQL"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp" />
+            android:text="@string/view_mysql"
+            android:layout_marginTop="8dp" />
 
-        <!-- Affichage de la dernière photo prise -->
+        <!-- Photo prise -->
         <ImageView
             android:id="@+id/imagePhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_marginTop="24dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:background="@android:color/darker_gray"
             android:contentDescription="Image prise" />
 

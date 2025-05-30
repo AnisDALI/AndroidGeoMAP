@@ -1,5 +1,7 @@
 package fr.android.androidgeomap;
 
+import static fr.android.androidgeomap.R.layout.activity_main;
+
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(activity_main);
 
         // Initialisation UI
         textLatitude = findViewById(R.id.textLatitude);
@@ -129,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 dispatchTakePictureIntent();
             } else {
-                Toast.makeText(this, "Permission de caméra requise", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.camera_permission_required), Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -160,17 +163,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double lat = location.getLatitude();
         double lon = location.getLongitude();
 
-        textLatitude.setText("Latitude: " + lat);
-        textLongitude.setText("Longitude: " + lon);
+        textLatitude.setText(getString(R.string.latitude) + ": " + lat);
+        textLongitude.setText(getString(R.string.longitude) + ": " + lon);
 
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
             if (addresses != null && !addresses.isEmpty()) {
-                textAddress.setText("Adresse: " + addresses.get(0).getAddressLine(0));
+                textAddress.setText(getString(R.string.address) + ": " + addresses.get(0).getAddressLine(0));
             }
         } catch (IOException e) {
-            textAddress.setText("Erreur lors du géocodage");
+            textAddress.setText(getString(R.string.geocoding_error));
+
         }
     }
 
@@ -193,7 +197,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             photoFile = createImageFile();
             currentPhotoPath = photoFile.getAbsolutePath();
         } catch (IOException e) {
-            Toast.makeText(this, "Erreur création fichier photo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_creating_file), Toast.LENGTH_SHORT).show();
+
             return;
         }
 
@@ -295,7 +300,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, options);
             imagePhoto.setImageBitmap(bitmap);
         } catch (Exception e) {
-            Toast.makeText(this, "Erreur chargement image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.image_loading_error), Toast.LENGTH_SHORT).show();
+
         }
     }
 

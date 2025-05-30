@@ -1,4 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AndroidGeoMAP</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="welcome">Welcome!</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="address">Address</string>
+    <string name="show_map">Show Map</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="history">Photo History</string>
+    <string name="view_mysql">View from MySQL</string>
+    <string name="back">Back</string>
+    <string name="photo_saved">Photo successfully saved</string>
+    <string name="camera_permission_required">Camera permission required</string>
+    <string name="error_creating_file">Error creating photo file</string>
+    <string name="geocoding_error">Error during geocoding</string>
+    <string name="image_loading_error">Error loading image</string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>
+
